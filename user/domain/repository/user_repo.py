@@ -1,5 +1,7 @@
 from abc import ABCMeta, abstractmethod
+
 from user.domain.user import User
+
 
 class IUserRepository(metaclass=ABCMeta):
     @abstractmethod
@@ -13,6 +15,7 @@ class IUserRepository(metaclass=ABCMeta):
         검색한 유저가 없을 경우 422 에러를 발생시킨다.
         """
         raise NotImplementedError
+
     @abstractmethod
     def find_by_id(self, id: str) -> User:
         raise NotImplementedError
@@ -20,4 +23,3 @@ class IUserRepository(metaclass=ABCMeta):
     @abstractmethod
     def update(self, user: User):
         raise NotImplementedError
-

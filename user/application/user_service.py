@@ -1,11 +1,12 @@
-from dependency_injector.wiring import inject
-
-from ulid import ULID
-from fastapi import HTTPException
 from datetime import datetime
+from dependency_injector.wiring import inject
+from fastapi import HTTPException
+from ulid import ULID
+
 from user.domain.user import User
 from user.domain.repository.user_repo import IUserRepository
 from utils.crypto import Crypto
+
 
 class UserService:
     @inject
@@ -18,23 +19,22 @@ class UserService:
         self.crypto = Crypto()
 
     def create_user(
-            self,
-            name: str,
-            email: str,
-            password: str,
-            memo: str | None = None,
-        ):
+        self,
+        name: str,
+        email: str,
+        password: str,
+        memo: str | None = None,
+    ):
         _user = None
-
         try:
             _user = self.user_repo.find_by_email(email)
         except HTTPException as e:
             if e.status_code != 422:
                 raise e
- 
+
         if _user:
             raise HTTPException(status_code=422)
-        
+
         now = datetime.now()
         user: User = User(
             id=self.ulid.generate(),
@@ -48,7 +48,7 @@ class UserService:
         self.user_repo.save(user)
 
         return user
-    
+
     def update_user(
         self,
         user_id: str,
@@ -62,7 +62,7 @@ class UserService:
         if password:
             user.password = self.crypto.encrypt(password)
         user.updated_at = datetime.now()
- 
+
         self.user_repo.update(user)
- 
+
         return user
