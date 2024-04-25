@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "fastapi-ca"
+version = "0.1.0"
+description = ""
+authors = ["do-yoon <do.yoon.like.cheeze@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.110.1"
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+uvicorn = {extras = ["standard"], version = "^0.29.0"}
+sqlalchemy = "^2.0.29"
+mysqlclient = "^2.2.4"
+alembic = "^1.13.1"
+py-ulid = "^1.0.3"
+dependency-injector = "^4.41.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
