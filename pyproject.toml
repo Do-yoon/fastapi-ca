@@ -15,6 +15,16 @@ mysqlclient = "^2.2.4"
 alembic = "^1.13.1"
 py-ulid = "^1.0.3"
 dependency-injector = "^4.41.0"
+pydantic = {extras = ["email"], version = "^2.7.1"}
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+python-multipart = "^0.0.9"
+pydantic-settings = "^2.2.1"
+celery = "^5.4.0"
+eventlet = "^0.36.1"
+requests = "^2.31.0"
+pytest = "^8.2.0"
+pytest-mock = "^3.14.0"
+freezegun = "^1.5.0"
 
 
 [build-system]
